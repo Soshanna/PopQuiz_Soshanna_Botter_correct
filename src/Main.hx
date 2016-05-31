@@ -62,8 +62,6 @@ class Main extends Sprite
 		exitButton.x = 465;
 		exitButton.y = 350;
 		exitButton.addEventListener(MouseEvent.CLICK, exitGame);
-		
-		
 	}
 	
 	public function exitGame (event:MouseEvent)
@@ -80,6 +78,5 @@ class Main extends Sprite
 		
 		addChild(questionAnswer);
 		questionAnswer.startQuestion();
-		
 	}
 } 
