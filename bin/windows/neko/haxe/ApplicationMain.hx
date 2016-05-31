@@ -91,7 +91,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "517",
+			build: "519",
 			company: "Soshanna Botter",
 			file: "PopQuiz_Soshanna_Botter",
 			fps: 60,

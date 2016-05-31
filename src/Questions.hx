@@ -30,6 +30,7 @@ import openfl.display.DisplayObject;
  class Questions extends Sprite
 {
 	var score:Int = 0;
+	var incorrect:Int = 0;
 	
 	var scoreTextField:TextField = null;
 	var timerTextField: TextField = null;
@@ -150,6 +151,7 @@ import openfl.display.DisplayObject;
 	function answerIncorrect(event:MouseEvent) 
 	{
 		trace("incorrect");
+		incorrect = incorrect + 1;
 		startQuestion();
 	}
 	
