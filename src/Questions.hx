@@ -84,7 +84,7 @@ import openfl.display.DisplayObject;
 		questionTextField.height = 50;
 		addChild(questionTextField);
 		
-	    textFieldAnswer1 = new TextField();
+	    	textFieldAnswer1 = new TextField();
 		textFieldAnswer1.defaultTextFormat = textFormatCenterAligned;
 		textFieldAnswer1.x = 140;
 		textFieldAnswer1.y = 160;
