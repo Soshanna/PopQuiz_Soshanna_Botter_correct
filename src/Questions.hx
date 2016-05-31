@@ -93,7 +93,7 @@ import openfl.display.DisplayObject;
 		questionTextField.height = 50;
 		addChild(questionTextField);
 		
-	    	textFieldAnswer1 = new TextField();
+	    textFieldAnswer1 = new TextField();
 		textFieldAnswer1.defaultTextFormat = textFormatCenterAligned;
 		textFieldAnswer1.x = 140;
 		textFieldAnswer1.y = 160;
@@ -173,7 +173,7 @@ import openfl.display.DisplayObject;
 	{
 		var cnx = Sqlite.open("assets/QuizGameDatabase.db");
 		
-		var resultSet = cnx.request("SELECT question, answer1, answer2, answer3, answer4 FROM Questions ORDER BY RANDOM();");
+		var resultSet = cnx.request("SELECT question, answer1, answer2, answer3, answer4 FROM Questions ORDER BY RANDOM() LIMIT 11;");
 		
 		for ( row in resultSet)
 		{
@@ -197,5 +197,4 @@ import openfl.display.DisplayObject;
 		textFieldAnswer4.text = answer4[questionNumber];
 		
 	}
-	
 }
