@@ -34,7 +34,7 @@ import openfl.display.DisplayObject;
 	var scoreTextField:TextField = null;
 	var timerTextField: TextField = null;
 	
-	var correctAnswer: Int=-1;
+	//var correctAnswer: Int=-1;
 	var questionNumber: Int = -1;
 	var lastTime:Int = 0;
 	var timer:Int = 5000;
@@ -55,12 +55,21 @@ import openfl.display.DisplayObject;
 	{
 		super(); 
 		
-		var textFormatRightAligned:TextFormat = new TextFormat("Arial", 24, 0x000000, false, false, false, null, null, TextFormatAlign.RIGHT);
-		var textFormatCenterAligned:TextFormat = new TextFormat("Arial", 24, 0x000000, false, false, false, null, null, TextFormatAlign.CENTER);
+		var backgroundImage:Sprite = new Sprite();	
+		var backgroundImage:Bitmap = new Bitmap(Assets.getBitmapData("assets/img/background.png"));
+		var board : Sprite = new Sprite();
+		board.addChild(backgroundImage);
+		addChild(board);
+		backgroundImage.x = -750;
+		backgroundImage.y = -600;
+		
+		
+		var textFormatRightAligned:TextFormat = new TextFormat("Arial", 24, 0xFFFFFF, false, false, false, null, null, TextFormatAlign.RIGHT);
+		var textFormatCenterAligned:TextFormat = new TextFormat("Arial", 24, 0xFFFFFF, false, false, false, null, null, TextFormatAlign.CENTER);
 		
 		scoreTextField = new TextField();
 		scoreTextField.defaultTextFormat = textFormatRightAligned;
-		scoreTextField.x = 20;
+		scoreTextField.x = 0;
 		scoreTextField.y = 20;
 		scoreTextField.width = 50;
 		scoreTextField.height = 25;
@@ -69,7 +78,7 @@ import openfl.display.DisplayObject;
 		
 		timerTextField = new TextField();
 		timerTextField.defaultTextFormat = textFormatRightAligned;
-		timerTextField.x = 650;
+		timerTextField.x = 700;
 		timerTextField.y = 20;
 		timerTextField.width = 50;
 		timerTextField.height = 25;
@@ -91,7 +100,7 @@ import openfl.display.DisplayObject;
 		textFieldAnswer1.width = 500;
 		textFieldAnswer1.height = 50;
 		addChild(textFieldAnswer1);
-		textFieldAnswer1.addEventListener(MouseEvent.CLICK, onanswer1Click);
+		textFieldAnswer1.addEventListener(MouseEvent.CLICK, answerCorrect);
 		
 		textFieldAnswer2 = new TextField();
 		textFieldAnswer2.defaultTextFormat = textFormatCenterAligned;
@@ -100,7 +109,7 @@ import openfl.display.DisplayObject;
 		textFieldAnswer2.width = 500;
 		textFieldAnswer2.height = 50;
 		addChild(textFieldAnswer2);
-		textFieldAnswer2.addEventListener(MouseEvent.CLICK, onanswer2Click);
+		textFieldAnswer2.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
 		textFieldAnswer3 = new TextField();
 		textFieldAnswer3.defaultTextFormat = textFormatCenterAligned;
@@ -109,7 +118,7 @@ import openfl.display.DisplayObject;
 		textFieldAnswer3.width = 500;
 		textFieldAnswer3.height = 50;
 		addChild(textFieldAnswer3);
-		textFieldAnswer3.addEventListener(MouseEvent.CLICK, onanswer3Click);
+		textFieldAnswer3.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
 		textFieldAnswer4 = new TextField();
 		textFieldAnswer4.defaultTextFormat = textFormatCenterAligned;
@@ -118,7 +127,7 @@ import openfl.display.DisplayObject;
 		textFieldAnswer4.width = 500;
 		textFieldAnswer4.height = 50;
 		addChild(textFieldAnswer4);
-		textFieldAnswer4.addEventListener(MouseEvent.CLICK, onanswer4Click);
+		textFieldAnswer4.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
 		requestQuestions();
 		startQuestion();
@@ -129,29 +138,19 @@ import openfl.display.DisplayObject;
 		
 	}
 	
-	function onanswer1Click(event:MouseEvent) 
+	function answerCorrect(event:MouseEvent) 
 	{
-		trace("option 1");
-		//punt erbij
-		//volgende vraag
+		trace("correct");
+		score = score + 1;
+		scoreTextField.text = Std.string(score);
 		startQuestion();
-		//score = score +1;
+		
 	}
 	
-	function onanswer2Click(event:MouseEvent) 
+	function answerIncorrect(event:MouseEvent) 
 	{
-		trace("option 2");
+		trace("incorrect");
 		startQuestion();
-	}
-	
-	function onanswer3Click(event:MouseEvent) 
-	{
-		trace("option 3");
-	}
-	
-	function onanswer4Click(event:MouseEvent) 
-	{
-		trace("option 4");
 	}
 	
 	public function startTimer(event:KeyboardEvent)
@@ -199,12 +198,4 @@ import openfl.display.DisplayObject;
 		
 	}
 	
-	//public function checkAnswer(answer:Int)
-	//{
-		//if (answer == correctAnswer)
-		//{
-			//score += 1;
-			//scoreTextField.text = Std.string(score);
-		//}
-	//}
 }
