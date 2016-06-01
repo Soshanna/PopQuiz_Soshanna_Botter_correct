@@ -51,6 +51,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if (openfl && !flash)
 		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_font_dk_cool_crayon_ttf);
 		
 		
 		
@@ -62,6 +63,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
+		path.set ("assets/font/DK Cool Crayon.ttf", "assets/font/DK Cool Crayon.ttf");
+		type.set ("assets/font/DK Cool Crayon.ttf", AssetType.FONT);
 		path.set ("assets/img/background.png", "assets/img/background.png");
 		type.set ("assets/img/background.png", AssetType.IMAGE);
 		path.set ("assets/img/exitbutton.png", "assets/img/exitbutton.png");
@@ -79,6 +82,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
+		id = "assets/font/DK Cool Crayon.ttf";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
 		id = "assets/img/background.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -114,6 +120,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		
+		className.set ("assets/font/DK Cool Crayon.ttf", __ASSET__assets_font_dk_cool_crayon_ttf);
+		type.set ("assets/font/DK Cool Crayon.ttf", AssetType.FONT);
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -773,8 +782,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
 #elseif html5
 
+@:keep #if display private #end class __ASSET__assets_font_dk_cool_crayon_ttf extends lime.text.Font { public function new () { super (); name = "DK Cool Crayon"; } } 
 
 
 
@@ -785,6 +796,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 #else
 
+@:keep #if display private #end class __ASSET__assets_font_dk_cool_crayon_ttf extends lime.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "assets/font/DK Cool Crayon.ttf"; name = "DK Cool Crayon"; super (); }}
 
 
 #if (windows || mac || linux || cpp)
@@ -797,6 +809,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #end
 
 #if (openfl && !flash)
+@:keep #if display private #end class __ASSET__OPENFL__assets_font_dk_cool_crayon_ttf extends openfl.text.Font { public function new () { __fontPath = #if (ios || tvos) "assets/" + #end "assets/font/DK Cool Crayon.ttf"; name = "DK Cool Crayon"; super (); }}
 
 #end
 

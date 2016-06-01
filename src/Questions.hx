@@ -26,23 +26,21 @@ import openfl.display.DisplayObject;
  * @author Soshanna Botter
  */
 
- //score bijhouden in een variable
+ 
  class Questions extends Sprite
 {
 	var score:Int = 0;
+	var questionNumber: Int = -1;
+	var lastTime:Int = 0;
+	var timer:Int = 7000;
 	
 	var scoreTextField:TextField = null;
 	var timerTextField: TextField = null;
-	
-	var questionNumber: Int = -1;
-	var lastTime:Int = 0;
-	var timer:Int = 5000;
-	
 	var questionTextField:TextField = null;
-	var textFieldAnswer1: TextField;
-	var textFieldAnswer2: TextField;
-	var textFieldAnswer3: TextField;
-	var textFieldAnswer4: TextField; 
+	var answer1TextField: TextField;
+	var answer2TextField: TextField;
+	var answer3TextField: TextField;
+	var answer4TextField: TextField; 
 	
 	var questions: Array <String> = new Array<String>();
 	var answer1: Array <String> = new Array<String>();
@@ -62,25 +60,24 @@ import openfl.display.DisplayObject;
 		backgroundImage.x = -750;
 		backgroundImage.y = -600;
 		
-		
-		var textFormatRightAligned:TextFormat = new TextFormat("Arial", 24, 0xFFFFFF, false, false, false, null, null, TextFormatAlign.RIGHT);
-		var textFormatCenterAligned:TextFormat = new TextFormat("Arial", 24, 0xFFFFFF, false, false, false, null, null, TextFormatAlign.CENTER);
+		var textFormatRightAligned:TextFormat = new TextFormat("assets/font/DK Cool Crayon.ttf", 35, 0xFFFFFF, false, false, false, null, null, TextFormatAlign.RIGHT);
+		var textFormatCenterAligned:TextFormat = new TextFormat("assets/font/DK Cool Crayon.ttf", 24, 0xFFFFFF, false, false, false, null, null, TextFormatAlign.CENTER);
 		
 		scoreTextField = new TextField();
 		scoreTextField.defaultTextFormat = textFormatRightAligned;
 		scoreTextField.x = 0;
 		scoreTextField.y = 20;
 		scoreTextField.width = 50;
-		scoreTextField.height = 25;
+		scoreTextField.height = 35;
 		scoreTextField.text = "0";
 		addChild(scoreTextField);
 		
 		timerTextField = new TextField();
 		timerTextField.defaultTextFormat = textFormatRightAligned;
-		timerTextField.x = 700;
+		timerTextField.x = 800;
 		timerTextField.y = 20;
 		timerTextField.width = 50;
-		timerTextField.height = 25;
+		timerTextField.height = 35;
 		timerTextField.text = Std.string(timer/1000);
 		addChild(timerTextField);
 		
@@ -88,45 +85,45 @@ import openfl.display.DisplayObject;
 		questionTextField.defaultTextFormat = textFormatCenterAligned;
 		questionTextField.x = 0;
 		questionTextField.y = 100;
-		questionTextField.width = 800;
+		questionTextField.width = 900;
 		questionTextField.height = 50;
 		addChild(questionTextField);
 		
-	    textFieldAnswer1 = new TextField();
-		textFieldAnswer1.defaultTextFormat = textFormatCenterAligned;
-		textFieldAnswer1.x = 140;
-		textFieldAnswer1.y = 160;
-		textFieldAnswer1.width = 500;
-		textFieldAnswer1.height = 50;
-		addChild(textFieldAnswer1);
-		textFieldAnswer1.addEventListener(MouseEvent.CLICK, answerCorrect);
+	    answer1TextField = new TextField();
+		answer1TextField.defaultTextFormat = textFormatCenterAligned;
+		answer1TextField.x = 350;
+		answer1TextField.y = 190;
+		answer1TextField.width = 200;
+		answer1TextField.height = 50;
+		addChild(answer1TextField);
+		answer1TextField.addEventListener(MouseEvent.CLICK, answerCorrect);
 		
-		textFieldAnswer2 = new TextField();
-		textFieldAnswer2.defaultTextFormat = textFormatCenterAligned;
-		textFieldAnswer2.x = 140;
-		textFieldAnswer2.y = 230;
-		textFieldAnswer2.width = 500;
-		textFieldAnswer2.height = 50;
-		addChild(textFieldAnswer2);
-		textFieldAnswer2.addEventListener(MouseEvent.CLICK, answerIncorrect);
+		answer2TextField = new TextField();
+		answer2TextField.defaultTextFormat = textFormatCenterAligned;
+		answer2TextField.x = 350;
+		answer2TextField.y = 280;
+		answer2TextField.width = 200;
+		answer2TextField.height = 50;
+		addChild(answer2TextField);
+		answer2TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
-		textFieldAnswer3 = new TextField();
-		textFieldAnswer3.defaultTextFormat = textFormatCenterAligned;
-		textFieldAnswer3.x = 140;
-		textFieldAnswer3.y = 300;
-		textFieldAnswer3.width = 500;
-		textFieldAnswer3.height = 50;
-		addChild(textFieldAnswer3);
-		textFieldAnswer3.addEventListener(MouseEvent.CLICK, answerIncorrect);
+		answer3TextField = new TextField();
+		answer3TextField.defaultTextFormat = textFormatCenterAligned;
+		answer3TextField.x = 350;
+		answer3TextField.y = 370;
+		answer3TextField.width = 200;
+		answer3TextField.height = 50;
+		addChild(answer3TextField);
+		answer3TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
-		textFieldAnswer4 = new TextField();
-		textFieldAnswer4.defaultTextFormat = textFormatCenterAligned;
-		textFieldAnswer4.x = 140;
-		textFieldAnswer4.y = 370;
-		textFieldAnswer4.width = 500;
-		textFieldAnswer4.height = 50;
-		addChild(textFieldAnswer4);
-		textFieldAnswer4.addEventListener(MouseEvent.CLICK, answerIncorrect);
+		answer4TextField = new TextField();
+		answer4TextField.defaultTextFormat = textFormatCenterAligned;
+		answer4TextField.x = 350;
+		answer4TextField.y = 460;
+		answer4TextField.width = 200;
+		answer4TextField.height = 50;
+		addChild(answer4TextField);
+		answer4TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
 		requestQuestions();
 		startQuestion();
@@ -187,13 +184,15 @@ import openfl.display.DisplayObject;
 	public function startQuestion()
 	{
 		questionNumber += 1;
-		timer = 5000;
+		timer = 7000;
 		
 		questionTextField.text = questions[questionNumber];
-		textFieldAnswer1.text = answer1[questionNumber];
-		textFieldAnswer2.text = answer2[questionNumber];
-		textFieldAnswer3.text = answer3[questionNumber];
-		textFieldAnswer4.text = answer4[questionNumber];
+		answer1TextField.text = answer1[questionNumber];
+		answer2TextField.text = answer2[questionNumber];
+		answer3TextField.text = answer3[questionNumber];
+		answer4TextField.text = answer4[questionNumber];
 		
 	}
+	
+
 }

@@ -91,7 +91,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "521",
+			build: "559",
 			company: "Soshanna Botter",
 			file: "PopQuiz_Soshanna_Botter",
 			fps: 60,
@@ -109,13 +109,13 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: true,
-					height: 480,
+					height: 550,
 					parameters: "{}",
 					resizable: true,
 					stencilBuffer: true,
 					title: "PopQuiz_Soshanna_Botter",
 					vsync: false,
-					width: 800,
+					width: 900,
 					x: null,
 					y: null
 				},
@@ -133,7 +133,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 800, 480, "null");
+		openfl.Lib.embed (null, 900, 550, "null");
 		#end
 		#else
 		create ();

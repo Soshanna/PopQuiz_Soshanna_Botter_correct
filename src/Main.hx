@@ -48,19 +48,19 @@ class Main extends Sprite
 		
 		board.addChild(logo);
 		addChild(board);
-		logo.x = 260;
-		logo.y = 30;
+		logo.x = 300;
+		logo.y = 50;
 		
 		board.addChild(startButton);
 		addChild(board);
 		startButton.x = 150;
-		startButton.y = 350;
+		startButton.y = 390;
 		board.addEventListener(MouseEvent.CLICK, startGame);
 		
 		exitButton.addChild(exitImage);
 		board.addChild(exitButton);
-		exitButton.x = 465;
-		exitButton.y = 350;
+		exitButton.x = 530;
+		exitButton.y = 390;
 		exitButton.addEventListener(MouseEvent.CLICK, exitGame);
 	}
 	
