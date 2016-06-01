@@ -1,5 +1,5 @@
 package;
-import flash.display.Sprite;
+import openfl.display.Sprite;
 
 /**
  * ...
@@ -14,7 +14,7 @@ class Leaderboard extends Sprite
 
 	public function new() 
 	{
-	
+		super();
 	}
 	
 }

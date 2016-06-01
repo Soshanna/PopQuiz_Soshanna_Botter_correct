@@ -17,7 +17,7 @@ import openfl.Lib;
 
 import openfl.ui.Keyboard;
 import openfl.Assets;
-import flash.system.System;
+import openfl.system.System;
 import sys.db.Sqlite;
 import openfl.display.DisplayObject;
 

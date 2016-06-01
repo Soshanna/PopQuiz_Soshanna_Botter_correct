@@ -286,8 +286,11 @@ import openfl.display.DisplayObject;
 		removeChild(answer2TextField);
 		removeChild(answer3TextField);
 		removeChild(answer4TextField);
-		//var highScore:Leaderboard = new Leaderboard();
-		//highScore.Leaderboard();
+		
+		var enterName:EnterName = new EnterName(score);
+		
+		addChild(enterName);
+		
 	}
 	
 
