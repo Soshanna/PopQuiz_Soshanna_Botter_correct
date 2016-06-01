@@ -91,36 +91,36 @@ import openfl.display.DisplayObject;
 		
 	    answer1TextField = new TextField();
 		answer1TextField.defaultTextFormat = textFormatCenterAligned;
-		answer1TextField.x = 350;
+		answer1TextField.x = 330;
 		answer1TextField.y = 190;
-		answer1TextField.width = 200;
+		answer1TextField.width = 250;
 		answer1TextField.height = 50;
 		addChild(answer1TextField);
 		answer1TextField.addEventListener(MouseEvent.CLICK, answerCorrect);
 		
 		answer2TextField = new TextField();
 		answer2TextField.defaultTextFormat = textFormatCenterAligned;
-		answer2TextField.x = 350;
+		answer2TextField.x = 330;
 		answer2TextField.y = 280;
-		answer2TextField.width = 200;
+		answer2TextField.width = 250;
 		answer2TextField.height = 50;
 		addChild(answer2TextField);
 		answer2TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
 		answer3TextField = new TextField();
 		answer3TextField.defaultTextFormat = textFormatCenterAligned;
-		answer3TextField.x = 350;
+		answer3TextField.x = 330;
 		answer3TextField.y = 370;
-		answer3TextField.width = 200;
+		answer3TextField.width = 250;
 		answer3TextField.height = 50;
 		addChild(answer3TextField);
 		answer3TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
 		
 		answer4TextField = new TextField();
 		answer4TextField.defaultTextFormat = textFormatCenterAligned;
-		answer4TextField.x = 350;
+		answer4TextField.x = 330;
 		answer4TextField.y = 460;
-		answer4TextField.width = 200;
+		answer4TextField.width = 250;
 		answer4TextField.height = 50;
 		addChild(answer4TextField);
 		answer4TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
@@ -169,7 +169,7 @@ import openfl.display.DisplayObject;
 	{
 		var cnx = Sqlite.open("assets/QuizGameDatabase.db");
 		
-		var resultSet = cnx.request("SELECT question, answer1, answer2, answer3, answer4 FROM Questions ORDER BY RANDOM() LIMIT 11;");
+		var resultSet = cnx.request("SELECT question, answer1, answer2, answer3, answer4 FROM Questions ORDER BY RANDOM() LIMIT 20;");
 		
 		for ( row in resultSet)
 		{
@@ -186,12 +186,27 @@ import openfl.display.DisplayObject;
 		questionNumber += 1;
 		timer = 7000;
 		
+		trace(questionNumber);
+		
 		questionTextField.text = questions[questionNumber];
 		answer1TextField.text = answer1[questionNumber];
 		answer2TextField.text = answer2[questionNumber];
 		answer3TextField.text = answer3[questionNumber];
 		answer4TextField.text = answer4[questionNumber];
 		
+		if (questionNumber == 11)
+		{
+			endGame();
+		}
+		
+		
+	}
+	
+	function endGame()
+	{
+		removeChildren();
+		var highScore:Leaderboard = new Leaderboard();
+		highScore.Leaderboard();
 	}
 	
 

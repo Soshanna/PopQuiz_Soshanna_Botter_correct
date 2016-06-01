@@ -25,6 +25,11 @@ import openfl.display.DisplayObject;
  * ...
  * @author Soshanna Botter
  */
+
+  //name insert at start of game
+ //shuffle position of answer textfield
+ //ending for game after 10 questions, show highscores
+ 
 class Main extends Sprite 
 {
 	var board : Sprite = new Sprite();
