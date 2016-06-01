@@ -271,16 +271,10 @@ import openfl.display.DisplayObject;
 		
 		answerTexts = new Array<String>();
 		
-		
-		
-		
-		
 		if (questionNumber == 11)
 		{
 			endGame();
 		}
-		
-		
 	}
 	
 	function endGame()
