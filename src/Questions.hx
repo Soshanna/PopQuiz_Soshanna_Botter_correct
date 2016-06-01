@@ -205,8 +205,8 @@ import openfl.display.DisplayObject;
 	function endGame()
 	{
 		removeChildren();
-		var highScore:Leaderboard = new Leaderboard();
-		highScore.Leaderboard();
+		//var highScore:Leaderboard = new Leaderboard();
+		//highScore.Leaderboard();
 	}
 	
 
