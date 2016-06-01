@@ -1,10 +1,11 @@
 package;
+import flash.display.Sprite;
 
 /**
  * ...
  * @author Soshanna Botter
  */
-class Leaderboard
+class Leaderboard extends Sprite 
 {
 	//var name:String=insert name
 	//var score:Int=score
@@ -13,7 +14,7 @@ class Leaderboard
 
 	public function new() 
 	{
-		
+	
 	}
 	
 }

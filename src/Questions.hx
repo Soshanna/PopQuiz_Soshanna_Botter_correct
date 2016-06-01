@@ -48,6 +48,8 @@ import openfl.display.DisplayObject;
 	var answer3: Array <String> = new Array<String>();
 	var answer4: Array <String> = new Array<String>();
 	
+	var answerTexts:Array<String> = new Array<String>();
+	
 	public function new() 
 	{
 		super(); 
@@ -95,8 +97,9 @@ import openfl.display.DisplayObject;
 		answer1TextField.y = 190;
 		answer1TextField.width = 250;
 		answer1TextField.height = 50;
+		//answer1TextField.text = "0";
 		addChild(answer1TextField);
-		answer1TextField.addEventListener(MouseEvent.CLICK, answerCorrect);
+		answer1TextField.addEventListener(MouseEvent.CLICK, checkAnswer1);
 		
 		answer2TextField = new TextField();
 		answer2TextField.defaultTextFormat = textFormatCenterAligned;
@@ -104,8 +107,9 @@ import openfl.display.DisplayObject;
 		answer2TextField.y = 280;
 		answer2TextField.width = 250;
 		answer2TextField.height = 50;
+		//answer2TextField.text = "0";
 		addChild(answer2TextField);
-		answer2TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
+		answer2TextField.addEventListener(MouseEvent.CLICK, checkAnswer2);
 		
 		answer3TextField = new TextField();
 		answer3TextField.defaultTextFormat = textFormatCenterAligned;
@@ -113,8 +117,9 @@ import openfl.display.DisplayObject;
 		answer3TextField.y = 370;
 		answer3TextField.width = 250;
 		answer3TextField.height = 50;
+		//answer3TextField.text = "0";
 		addChild(answer3TextField);
-		answer3TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
+		answer3TextField.addEventListener(MouseEvent.CLICK, checkAnswer3);
 		
 		answer4TextField = new TextField();
 		answer4TextField.defaultTextFormat = textFormatCenterAligned;
@@ -122,8 +127,9 @@ import openfl.display.DisplayObject;
 		answer4TextField.y = 460;
 		answer4TextField.width = 250;
 		answer4TextField.height = 50;
+		//answer4TextField.text = "0";
 		addChild(answer4TextField);
-		answer4TextField.addEventListener(MouseEvent.CLICK, answerIncorrect);
+		answer4TextField.addEventListener(MouseEvent.CLICK, checkAnswer4);
 		
 		requestQuestions();
 		startQuestion();
@@ -134,7 +140,71 @@ import openfl.display.DisplayObject;
 		
 	}
 	
-	function answerCorrect(event:MouseEvent) 
+	function shuffleAnswers()
+	{
+		for (i in 0...4)
+		{
+			var change:Int = i + Math.floor(Math.random() * (4 - i));
+			var tempAnswer = answerTexts[i];
+			answerTexts[i] = answerTexts[change];
+			answerTexts[change] = tempAnswer;
+		}
+	}
+	
+	function checkAnswer1(event:MouseEvent)
+	{
+		if (answer1TextField.text == answer1[questionNumber]) 
+		{
+			answerCorrect();
+			
+		}
+		else 
+		{
+			answerIncorrect();
+		}
+	}
+	
+	function checkAnswer2(event:MouseEvent)
+	{
+		if (answer2TextField.text == answer1[questionNumber]) 
+		{
+			answerCorrect();
+			
+		}
+		else 
+		{
+			answerIncorrect();
+		}
+	}
+	
+	function checkAnswer3(event:MouseEvent)
+	{
+		if (answer3TextField.text == answer1[questionNumber]) 
+		{
+			answerCorrect();
+			
+		}
+		else 
+		{
+			answerIncorrect();
+		}
+	}
+	
+	function checkAnswer4(event:MouseEvent)
+	{
+		if (answer4TextField.text == answer1[questionNumber]) 
+		{
+			answerCorrect();
+			
+		}
+		else 
+		{
+			answerIncorrect();
+		}
+	}
+	
+	
+	function answerCorrect()
 	{
 		trace("correct");
 		score = score + 1;
@@ -143,7 +213,7 @@ import openfl.display.DisplayObject;
 		
 	}
 	
-	function answerIncorrect(event:MouseEvent) 
+	function answerIncorrect()
 	{
 		trace("incorrect");
 		startQuestion();
@@ -186,13 +256,24 @@ import openfl.display.DisplayObject;
 		questionNumber += 1;
 		timer = 7000;
 		
-		trace(questionNumber);
+		answerTexts.push(answer1[questionNumber]);
+		answerTexts.push(answer2[questionNumber]);
+		answerTexts.push(answer3[questionNumber]);
+		answerTexts.push(answer4[questionNumber]);
+		
+		shuffleAnswers();
 		
 		questionTextField.text = questions[questionNumber];
-		answer1TextField.text = answer1[questionNumber];
-		answer2TextField.text = answer2[questionNumber];
-		answer3TextField.text = answer3[questionNumber];
-		answer4TextField.text = answer4[questionNumber];
+		answer1TextField.text = answerTexts[0];
+		answer2TextField.text = answerTexts[1];
+		answer3TextField.text = answerTexts[2];
+		answer4TextField.text = answerTexts[3];
+		
+		answerTexts = new Array<String>();
+		
+		
+		
+		
 		
 		if (questionNumber == 11)
 		{
@@ -204,7 +285,13 @@ import openfl.display.DisplayObject;
 	
 	function endGame()
 	{
-		removeChildren();
+		removeChild(scoreTextField);
+		removeChild(timerTextField);
+		removeChild(questionTextField);
+		removeChild(answer1TextField);
+		removeChild(answer2TextField);
+		removeChild(answer3TextField);
+		removeChild(answer4TextField);
 		//var highScore:Leaderboard = new Leaderboard();
 		//highScore.Leaderboard();
 	}
