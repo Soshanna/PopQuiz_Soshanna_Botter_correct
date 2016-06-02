@@ -1,5 +1,6 @@
 package;
 
+import openfl.utils.Timer;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
@@ -206,7 +207,6 @@ import openfl.display.DisplayObject;
 	
 	function answerCorrect()
 	{
-		trace("correct");
 		score = score + 1;
 		scoreTextField.text = Std.string(score);
 		startQuestion();
@@ -215,7 +215,6 @@ import openfl.display.DisplayObject;
 	
 	function answerIncorrect()
 	{
-		trace("incorrect");
 		startQuestion();
 	}
 	

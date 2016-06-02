@@ -72,7 +72,6 @@ class EnterName extends Sprite
 	
 	function onKeyDown(event:KeyboardEvent)
 	{
-		trace(event.keyCode);
 		switch (event.keyCode)
 		{
 			case 13:
